@@ -29,7 +29,7 @@ dependencies:
         parallel: false
     - "cd $SRCDIR/build; ../tools/rebuild-image weaveworks/weavebuild . Dockerfile build.sh && touch $SRCDIR/.build.uptodate"
     - cd $SRCDIR; make testrunner
-    - cd $SRCDIR; make COVERAGE=true RM= all
+    - cd $SRCDIR; make COVERAGE=true RM= exes all
 
 test:
   override:
@@ -68,7 +68,7 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - cd $SRCDIR; make clean-bin
-      - cd $SRCDIR; make publish
+      - cd $SRCDIR; make exes publish
 #      - go get github.com/weaveworks/wordepress && cd /home/ubuntu/src/github.com/weaveworks/wordepress && git checkout v1.0.0 && cd cmd/wordepress && go get
 #      - cd $SRCDIR; bin/publish-site "$WP_DEV_URL" "$WP_DEV_USER" "$WP_DEV_PASSWORD"
 #  issues:
